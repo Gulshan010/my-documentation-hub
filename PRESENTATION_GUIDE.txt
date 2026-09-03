@@ -1,0 +1,47 @@
+My Lab Documentation Hub - Presentation Guide
+
+Project title:
+My Lab Documentation Hub
+
+How to run:
+1. Open IDLE.
+2. Open the file run_project.py
+3. Press F5 or click Run > Run Module
+4. Browser will open automatically
+
+Main website:
+http://127.0.0.1:8000/
+
+Admin login from dashboard:
+Role: Admin
+Admin Username: Gulshan
+Password: 369963
+
+Student class options:
+BCA I SEM
+BCA II SEM
+BCA III SEM
+BCA IV SEM
+BCA V SEM
+BCA VI SEM
+
+Main features to explain:
+1. Create Account and Login
+2. Role selection for Student, Teacher, Admin
+3. Student class selection
+4. Dashboard sections:
+   Curriculum
+   Study Material
+   Notification
+   Exam
+5. Department Details:
+   BCA Overview
+   Tutorial
+
+Important files:
+manage.py
+run_project.py
+portal/views.py
+portal/forms.py
+templates/portal/home.html
+templates/portal/dashboard.html

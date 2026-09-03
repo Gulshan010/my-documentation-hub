@@ -1,0 +1,50 @@
+{% extends 'portal/base.html' %}
+
+{% block content %}
+<div class="page-shell dashboard-shell">
+  <header class="dashboard-header">
+    <div>
+      <p class="eyebrow">Dashboard</p>
+      <h1>My Lab Documentation Hub</h1>
+      <p class="welcome-text">
+        Welcome {{ request.user.username }}{% if profile %}, logged in as {{ profile.get_role_display }}{% if profile.class_name %} for class {{ profile.class_name }}{% endif %}{% endif %}.
+      </p>
+    </div>
+    <a class="btn btn-secondary" href="{% url 'logout' %}">Logout</a>
+  </header>
+
+  <section class="dashboard-grid">
+    <div class="dashboard-main">
+      <div class="section-heading">
+        <p class="eyebrow">Department Details</p>
+        <h2>BCA Overview and Tutorial</h2>
+        <p>This is the main dashboard page for the department project.</p>
+      </div>
+      <div class="card-grid two-column">
+        {% for card in department_cards %}
+          <article class="feature-card feature-card-strong">
+            <h3>{{ card.title }}</h3>
+            <p>{{ card.text }}</p>
+          </article>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="feature-section">
+    <div class="section-heading">
+      <p class="eyebrow">Modules</p>
+      <h2>{{ modules_heading }}</h2>
+      <p>{{ access_note }}</p>
+    </div>
+    <div class="card-grid">
+      {% for card in home_cards %}
+        <a class="feature-card feature-link-card" href="{% url 'module_page' card.slug %}">
+          <h3>{{ card.title }}</h3>
+          <p>{{ card.text }}</p>
+        </a>
+      {% endfor %}
+    </div>
+  </section>
+</div>
+{% endblock %}

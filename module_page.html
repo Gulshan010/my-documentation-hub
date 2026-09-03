@@ -1,0 +1,53 @@
+{% extends 'portal/base.html' %}
+
+{% block content %}
+<div class="page-shell dashboard-shell">
+  <header class="dashboard-header">
+    <div>
+      <p class="eyebrow">Module Page</p>
+      <h1>{{ module_meta.title }}</h1>
+      <p class="welcome-text">{{ module_meta.text }}</p>
+    </div>
+    <a class="btn btn-secondary" href="{% url 'dashboard' %}">Back to Dashboard</a>
+  </header>
+
+  <section class="feature-section">
+    <div class="section-heading">
+      <p class="eyebrow">Admin Upload Content</p>
+      <h2>{{ module_meta.title }} Records</h2>
+      <p>Admin panel se image aur content upload karke yahan dikhaya jayega.</p>
+    </div>
+
+    <div class="card-grid">
+      {% for item in module_items %}
+        <article class="feature-card module-item-card">
+          {% if item.image %}
+            {% if item.is_image %}
+              <img class="module-image" src="{{ item.image.url }}" alt="{{ item.title }}">
+            {% elif item.is_pdf %}
+              <div class="file-box">
+                <h4>PDF Uploaded</h4>
+                <p>{{ item.file_name }}</p>
+                <a class="btn btn-primary" href="{{ item.image.url }}" target="_blank">Open PDF</a>
+              </div>
+            {% else %}
+              <div class="file-box">
+                <h4>File Uploaded</h4>
+                <p>{{ item.file_name }}</p>
+                <a class="btn btn-primary" href="{{ item.image.url }}" target="_blank">Open File</a>
+              </div>
+            {% endif %}
+          {% endif %}
+          <h3>{{ item.title }}</h3>
+          <p>{{ item.description }}</p>
+        </article>
+      {% empty %}
+        <article class="feature-card">
+          <h3>No content added yet</h3>
+          <p>Admin panel me jaakar {{ module_meta.title }} ke liye title, description, aur image upload kijiye.</p>
+        </article>
+      {% endfor %}
+    </div>
+  </section>
+</div>
+{% endblock %}
